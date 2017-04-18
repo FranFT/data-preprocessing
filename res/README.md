@@ -10,5 +10,9 @@ Unzip database here under its own folder like this:
 
 Then compile and execute using the following commands:
 ```sh
-http://dillinger.io/
+$ mkdir build
+$ cd build
+$ cmake .. & make
 ```
+
+[//]: <> (http://dillinger.io/)
