@@ -1,3 +1,7 @@
+# Directorios
+res/*
+!res/README.md
+
 # Compiled Object files
 *.slo
 *.lo
