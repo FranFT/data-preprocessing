@@ -1,4 +1,5 @@
 # Directorios
+build/
 res/*
 !res/README.md
 
