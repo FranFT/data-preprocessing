@@ -21,40 +21,6 @@ using namespace cv;
  * Functions
  **************/
 
-/**
- * Generates the labels file to be able to classify using the model later.
- * @param  _data_base Data base used.
- * @param  expr       Expression used to generate the labels.
- * @return            If succeeded writing the file.
- */
-bool generateLabelsFile( const infoBaseDatos* _data_base, int expr = -1 ){
-  /*
-  Variables
-   */
-  ofstream labels_file;
-  String labels_file_name = "labels.txt";
-
-  /*
-  Code
-   */
-  labels_file.open( labels_file_name.c_str(), ios::trunc );
-  if( labels_file.is_open() ){
-    if( expr == -1 ){
-      for( unsigned int i = 0; i < _data_base->get_num_expresiones(); i++ )
-        labels_file << i << " " << _data_base->get_expresion( i ) << endl;
-    }
-    else{
-      labels_file << 0 << " Not " << _data_base->get_expresion( expr ) << endl;
-      labels_file << 1 << " " << _data_base->get_expresion( expr ) << endl;
-    }
-    labels_file.close();
-    return true;
-  }
-  else{
-    return false;
-  }
-}
-
 int main(int argc, char **argv){
   /*
    Variables

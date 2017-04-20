@@ -2,6 +2,7 @@
 #define __UTILIDADES__
 
 #include <iostream>
+#include <fstream>
 #include <opencv2/opencv.hpp>
 #include "infoBaseDatos.h"
 
@@ -105,5 +106,13 @@ Mat randomNoise( const Mat& _image );
  * @return            True if some transformation was applied. False otherwise.
  */
 bool combinedTrans( const Mat& _image, Mat& output_mat, int nt = 4 );
+
+/**
+ * Generates the labels file to be able to classify using the model later.
+ * @param  _data_base Data base used.
+ * @param  expr       Expression used to generate the labels.
+ * @return            If succeeded writing the file.
+ */
+bool generateLabelsFile( const infoBaseDatos* _data_base, int expr = -1 );
 
 #endif
