@@ -55,7 +55,7 @@ void version_OpenCV();
 *	@brief This method calculates which sample element is in the training sample.
 *  @returns Vector indicating which element belongs to training (1) or not (0)
 */
-vector<bool> getTrainingSample( const infoBaseDatos* _data_base, const float _training_sample_size = 0.7 );
+vector<bool> getTrainingSample( const infoBaseDatos* _data_base );
 
 /**
  * Returns the mirror image.

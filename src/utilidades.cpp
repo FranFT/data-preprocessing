@@ -58,7 +58,7 @@ void version_OpenCV(){
 }
 
 
-vector<bool> getTrainingSample( const infoBaseDatos* _data_base, const float _training_sample_size ){
+vector<bool> getTrainingSample( const infoBaseDatos* _data_base ){
 	// Variables
 	vector<int> indexes;
 	vector<bool> output_vector;
@@ -69,7 +69,7 @@ vector<bool> getTrainingSample( const infoBaseDatos* _data_base, const float _tr
 	random_shuffle( indexes.begin(), indexes.end() );
 
 	output_vector = vector<bool>( indexes.size(), false );
-	for( unsigned int i = 0; i < ceil( indexes.size() * _training_sample_size ); i++ )
+	for( unsigned int i = 0; i < ceil( indexes.size() * _data_base->get_training_sample_size() ); i++ )
 		output_vector.at( indexes.at( i ) ) = true;
 
 	return output_vector;
