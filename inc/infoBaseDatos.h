@@ -62,4 +62,11 @@ public:
 	String construir_path(int _sujeto, int _expresion) const;
 };
 
+
+// Base de datos "KDEF"
+class KDEF: public infoBaseDatos{
+public:
+	KDEF();
+};
+
 #endif //__INFOBASEDATOS_H__
