@@ -19,6 +19,7 @@ protected:
 	const char* nombre;
 	int num_sujetos;
 	int num_expresiones;
+	float training_sample_size;
 	vector<String> expresiones;
 
 	/**
@@ -31,7 +32,7 @@ public:
 	*	Métodos definidos.
 	**/
 	// Constructor.
-	infoBaseDatos(int ns, int ne, const char* nombre);
+	infoBaseDatos( int _ns, int _ne, const char* _nombre, float _training_sample_size = 0.7 );
 
 	// Muestra información de la base de datos concreta.
 	void imprime_info() const;
@@ -41,6 +42,7 @@ public:
 	**/
 	int get_num_sujetos() const;
 	int get_num_expresiones() const;
+	float get_training_sample_size() const;
 	String get_expresion(int _indice) const;
 
 	/**
