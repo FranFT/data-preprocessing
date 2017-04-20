@@ -48,7 +48,7 @@ public:
 	/**
 	*	Métodos abstractos.
 	**/
-	virtual String construir_path(int _sujeto, int _expresion) const = 0;
+	virtual String construir_path(int _sujeto, int _expresion, int _gender = 0, int _session = 0) const = 0;
 };
 
 /***************************************************************************************************
@@ -59,7 +59,7 @@ class yalefaces: public infoBaseDatos{
 public:
 	yalefaces();
 
-	String construir_path(int _sujeto, int _expresion) const;
+	String construir_path(int _sujeto, int _expresion, int _gender = 0, int _session = 0) const;
 };
 
 
@@ -67,6 +67,8 @@ public:
 class KDEF: public infoBaseDatos{
 public:
 	KDEF();
+
+	String construir_path(int _sujeto, int _expresion, int _gender, int _session) const;
 };
 
 #endif //__INFOBASEDATOS_H__

@@ -14,7 +14,7 @@ yalefaces::yalefaces():infoBaseDatos(15, 11, "yalefaces"){
 	insertar_expresion("wink");
 }
 
-String yalefaces::construir_path(int _sujeto, int _expresion) const{
+String yalefaces::construir_path(int _sujeto, int _expresion, int _gender, int _session) const{
 
 	assert(_sujeto+1 > 0 && _sujeto+1 <= this->num_sujetos );
 	assert(_expresion >= 0 && _expresion < this->expresiones.size());
