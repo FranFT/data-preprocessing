@@ -48,7 +48,12 @@ public:
 	/**
 	*	Métodos abstractos.
 	**/
-	virtual String construir_path(int _sujeto, int _expresion, int _gender = 0, int _session = 0) const = 0;
+	virtual String construir_path(
+		unsigned int _sujeto,
+		unsigned int _expresion,
+		unsigned int _gender = 0,
+		unsigned int _session = 0,
+		unsigned int _angle = 0 ) const = 0;
 };
 
 /***************************************************************************************************
@@ -56,19 +61,37 @@ public:
 ***************************************************************************************************/
 // Base de datos "yalefaces"
 class yalefaces: public infoBaseDatos{
+private:
+	const String db_dir = "../res/yalefaces";
 public:
 	yalefaces();
 
-	String construir_path(int _sujeto, int _expresion, int _gender = 0, int _session = 0) const;
+	String construir_path(
+		unsigned int _sujeto,
+		unsigned int _expresion,
+		unsigned int _gender = 0,
+		unsigned int _session = 0,
+		unsigned int _angle = 0 ) const;
 };
 
 
 // Base de datos "KDEF"
 class KDEF: public infoBaseDatos{
+private:
+	const String db_dir = "../res/KDEF";
+	const String gender [2] = { "F", "M" };
+	const String session [2] = { "A", "B" };
+	const String angle [5] = { "FL", "HL", "S", "HR", "FR" };
+
 public:
 	KDEF();
 
-	String construir_path(int _sujeto, int _expresion, int _gender, int _session) const;
+	String construir_path(
+		unsigned int _sujeto,
+		unsigned int _expresion,
+		unsigned int _gender,
+		unsigned int _session,
+		unsigned int _angle) const;
 };
 
 #endif //__INFOBASEDATOS_H__

@@ -14,17 +14,22 @@ yalefaces::yalefaces():infoBaseDatos(15, 11, "yalefaces"){
 	insertar_expresion("wink");
 }
 
-String yalefaces::construir_path(int _sujeto, int _expresion, int _gender, int _session) const{
+String yalefaces::construir_path(
+	unsigned int _sujeto,
+	unsigned int _expresion,
+	unsigned int _gender,
+	unsigned int _session,
+	unsigned int _angle) const{
 
-	assert(_sujeto+1 > 0 && _sujeto+1 <= this->num_sujetos );
-	assert(_expresion >= 0 && _expresion < this->expresiones.size());
+	assert( _sujeto+1 <= this->num_sujetos );
+	assert( _expresion < this->expresiones.size());
 
   ostringstream conversor;
 
   if(_sujeto+1 < 10)
-      conversor << "../res/yalefaces/subject0" << _sujeto+1 << "." << this->expresiones.at(_expresion) << ".png";
+      conversor << this->db_dir << "/subject0" << _sujeto+1 << "." << this->expresiones.at(_expresion) << ".png";
   else
-      conversor << "../res/yalefaces/subject" << _sujeto+1 << "." << this->expresiones.at(_expresion) << ".png";
+      conversor << this->db_dir << "/subject" << _sujeto+1 << "." << this->expresiones.at(_expresion) << ".png";
 
   return conversor.str();
 }
