@@ -1,9 +1,5 @@
 #include "infoBaseDatos.h"
 
-void infoBaseDatos::insertar_expresion(String expresion){
-	this->expresiones.push_back(expresion);
-}
-
 infoBaseDatos::infoBaseDatos(int _ns, int _ne, const char* _nombre, float _training_sample_size){
 	this->nombre = _nombre;
 	this->num_sujetos = _ns;
@@ -28,6 +24,17 @@ int infoBaseDatos::get_num_sujetos() const{
 
 int infoBaseDatos::get_num_expresiones() const{
 	return this->num_expresiones;
+}
+
+int infoBaseDatos::get_num_genders() const{
+  return this->gender.size();
+}
+
+int infoBaseDatos::get_num_angles() const{
+  return this->angle.size();
+}
+int infoBaseDatos::get_num_sessions() const{
+  return this->session.size();
 }
 
 float infoBaseDatos::get_training_sample_size() const{

@@ -1,17 +1,9 @@
 #include "infoBaseDatos.h"
 
 yalefaces::yalefaces():infoBaseDatos(15, 11, "yalefaces"){
-	insertar_expresion("centerlight");
-	insertar_expresion("glasses");
-	insertar_expresion("happy");
-	insertar_expresion("leftlight");
-	insertar_expresion("noglasses");
-	insertar_expresion("normal");
-	insertar_expresion("rightlight");
-	insertar_expresion("sad");
-	insertar_expresion("sleepy");
-	insertar_expresion("surprised");
-	insertar_expresion("wink");
+	this->db_dir = "../res/yalefaces";
+	this->expresiones = { "centerlight", "glasses", "happy", "leftlight",
+		"noglasses", "normal", "rightlight", "sad", "sleepy", "surprised", "wink" };
 }
 
 String yalefaces::construir_path(

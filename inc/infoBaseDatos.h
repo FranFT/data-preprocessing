@@ -20,12 +20,11 @@ protected:
 	int num_sujetos;
 	int num_expresiones;
 	float training_sample_size;
+	String db_dir;
 	vector<String> expresiones;
-
-	/**
-	* Métodos privados.
-	**/
-	void insertar_expresion(String _expresion);
+	vector<String> gender;
+	vector<String> session;
+	vector<String> angle;
 
 public:
 	/**
@@ -42,6 +41,9 @@ public:
 	**/
 	int get_num_sujetos() const;
 	int get_num_expresiones() const;
+	int get_num_genders() const;
+	int get_num_angles() const;
+	int get_num_sessions() const;
 	float get_training_sample_size() const;
 	String get_expresion(int _indice) const;
 
@@ -61,8 +63,6 @@ public:
 ***************************************************************************************************/
 // Base de datos "yalefaces"
 class yalefaces: public infoBaseDatos{
-private:
-	const String db_dir = "../res/yalefaces";
 public:
 	yalefaces();
 
@@ -77,12 +77,6 @@ public:
 
 // Base de datos "KDEF"
 class KDEF: public infoBaseDatos{
-private:
-	const String db_dir = "../res/KDEF";
-	const String gender [2] = { "F", "M" };
-	const String session [2] = { "A", "B" };
-	const String angle [5] = { "FL", "HL", "S", "HR", "FR" };
-
 public:
 	KDEF();
 
