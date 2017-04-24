@@ -18,20 +18,27 @@ using namespace cv;
 
 int main(int argc, char **argv){
 
+  // Variables
+  Mat image;
   infoBaseDatos* db;
+  Scalar color = Scalar( 255, 255, 0 );
+  Rect roi = Rect( Point2f(100,200), Point2f(462,660) );
   db = new KDEF();
-  Mat aux;
   int cont = 0;
-  int total = db->get_num_sessions() * db->get_num_genders() * db->get_num_sujetos() * db->get_num_expresiones() * db->get_num_angles();
+  int total = db->get_num_sessions() * db->get_num_genders() * db->get_num_sujetos() * db->get_num_expresiones();
+  
   for( unsigned int s = 0; s < db->get_num_sessions(); s++ ){
     for( unsigned int g = 0; g < db->get_num_genders(); g++ ){
       for( unsigned int i = 0; i < db->get_num_sujetos(); i++ ){
         for( unsigned int j = 0; j < db->get_num_expresiones(); j++ ){
-          for( unsigned int a = 0; a < db->get_num_angles(); a++ ){
-            if( !leeimagen( db->construir_path(i,j,g,s,a), aux, 0 ) )
-              cerr << "Error leyendo: " << db->construir_path(i,j,g,s,a) << endl;
-            cout << "Leyendo... ";printProgress(cont, total);
+          if( leeimagen( db->construir_path(i,j,g,s,2), image, 0 ) ){
+            cout << "Procesando... ";
+            printProgress(cont, total);
             cont++;
+
+            // Preprocesamiento.
+            resize( image(roi), image, Size( 100, 100 ) );
+            pintaI( image, "imagen" );
           }
         }
       }
