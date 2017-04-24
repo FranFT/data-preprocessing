@@ -252,3 +252,12 @@ bool generateLabelsFile( const infoBaseDatos* _data_base, int expr ){
     return false;
   }
 }// generateLabelsFile ends.
+
+/******************************************************************************/
+void printProgress( int current, int total ){
+	double progress = (current * 100) / total;
+	cout << progress << "% - [";
+	for(int i=0; i<10; i++)
+		( i < progress / 10 ) ? cout << "=" : cout << "-";
+	cout << "]\r";
+}

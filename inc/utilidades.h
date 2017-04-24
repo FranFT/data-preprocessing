@@ -115,4 +115,11 @@ bool combinedTrans( const Mat& _image, Mat& output_mat, int nt = 4 );
  */
 bool generateLabelsFile( const infoBaseDatos* _data_base, int expr = -1 );
 
+/**
+ * [printProgress description]
+ * @param current [description]
+ * @param total   [description]
+ */
+void printProgress( int current, int total );
+
 #endif
