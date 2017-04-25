@@ -122,4 +122,12 @@ bool generateLabelsFile( const infoBaseDatos* _data_base, int expr = -1 );
  */
 void printProgress( int current, int total );
 
+/**
+ * Calculates which element belongs to training or test.
+ * @param  n                    Number of elements.
+ * @param  training_sample_size Percentage of elements which should belong to training
+ * @return                      An array indicating which element belongs to train (1) or test (0).
+ */
+vector<bool> generateTrainingSample( const unsigned int n, const float training_sample_size = 0.7 );
+
 #endif

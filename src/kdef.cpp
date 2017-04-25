@@ -26,7 +26,8 @@ int main(int argc, char **argv){
   db = new KDEF();
   int cont = 0;
   int total = db->get_num_sessions() * db->get_num_genders() * db->get_num_sujetos() * db->get_num_expresiones();
-  
+  vector<bool> ts = generateTrainingSample( total, 0.7 );
+
   for( unsigned int s = 0; s < db->get_num_sessions(); s++ ){
     for( unsigned int g = 0; g < db->get_num_genders(); g++ ){
       for( unsigned int i = 0; i < db->get_num_sujetos(); i++ ){

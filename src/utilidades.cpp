@@ -261,3 +261,21 @@ void printProgress( int current, int total ){
 		( i < progress / 10 ) ? cout << "=" : cout << "-";
 	cout << "]\r";
 }
+
+/******************************************************************************/
+vector<bool> generateTrainingSample( const unsigned int num_elements,
+	const float training_sample_size ){
+		assert( training_sample_size >= 0.0 && training_sample_size <= 1.0 );
+		vector<unsigned int> indexes( num_elements );
+		vector<bool> output( num_elements, false );
+
+		for( unsigned int i = 0; i < num_elements; i++ )
+			indexes[i] = i;
+
+		random_shuffle( indexes.begin(), indexes.end() );
+
+		for( unsigned int i = 0; i < num_elements * training_sample_size; i++ )
+			output[ indexes[i] ] = true;
+
+	return output;
+}
