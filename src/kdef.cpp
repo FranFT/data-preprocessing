@@ -2,6 +2,7 @@
 * Includes
 */
 #include <iostream>
+#include <fstream>
 #include <opencv2/opencv.hpp>
 #include "utilidades.h"
 #include "infoBaseDatos.h"
@@ -20,30 +21,54 @@ int main(int argc, char **argv){
 
   // Variables
   Mat image;
+  string imgname;
+  ofstream trainingListFile, testListFile;
   infoBaseDatos* db;
   Scalar color = Scalar( 255, 255, 0 );
   Rect roi = Rect( Point2f(100,200), Point2f(462,660) );
   db = new KDEF();
+
+  int angle = 2;
   int cont = 0;
   int total = db->get_num_sessions() * db->get_num_genders() * db->get_num_sujetos() * db->get_num_expresiones();
-  vector<bool> ts = generateTrainingSample( total, 0.7 );
+  int testCount = 0;
+  int trainingCount = 0;
 
-  for( unsigned int s = 0; s < db->get_num_sessions(); s++ ){
-    for( unsigned int g = 0; g < db->get_num_genders(); g++ ){
-      for( unsigned int i = 0; i < db->get_num_sujetos(); i++ ){
-        for( unsigned int j = 0; j < db->get_num_expresiones(); j++ ){
-          if( leeimagen( db->construir_path(i,j,g,s,2), image, 0 ) ){
-            cout << "Procesando... ";
-            printProgress(cont, total);
-            cont++;
+  // Opening output files.
+  trainingListFile.open( "trainingListFile.txt", ios::trunc );
+  testListFile.open( "testListFile.txt", ios::trunc );
 
-            // Preprocesamiento.
-            resize( image(roi), image, Size( 100, 100 ) );
-            pintaI( image, "imagen" );
+  if( trainingListFile.is_open() && testListFile.is_open() ){
+
+    vector<bool> ts = generateTrainingSample( total, 0.7 );
+
+    for( unsigned int s = 0; s < db->get_num_sessions(); s++ ){
+      for( unsigned int g = 0; g < db->get_num_genders(); g++ ){
+        for( unsigned int i = 0; i < db->get_num_sujetos(); i++ ){
+          for( unsigned int j = 0; j < db->get_num_expresiones(); j++ ){
+            if( leeimagen( db->construir_path( i, j, g, s, angle ), image, 0 ) ){
+              // Preprocesamiento.
+              if( ts[cont] ){
+                resize( image(roi), image, Size( 100, 100 ) );
+                imgname = "training/" + to_string( trainingCount++ ) + ".JPG";
+                trainingListFile << imgname << " " << j << endl;
+              }
+              else{
+                imgname = "test/" + to_string( testCount++ ) + ".JPG";
+                testListFile << imgname << " " << j << endl;
+              }
+
+              imwrite( imgname, image );
+
+              cout << "Procesando... ";
+              printProgress(cont++, total);
+            }
           }
         }
       }
     }
+    trainingListFile.close();
+    testListFile.close();
   }
 
   return 0;
