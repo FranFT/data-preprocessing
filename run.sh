@@ -15,3 +15,18 @@ fi
 cd $BUILD_DIR
 
 cmake .. && make
+
+case `echo $1 | tr '[:upper:]' '[:lower:]'` in
+  kdef)
+    echo "Preprocesando KDEF"
+    ./KDEF
+    ;;
+  yalefaces)
+    echo "Preprocesando Yalefaces"
+    ./yalefaces
+    ;;
+  *)
+    echo "Preprocesando KDEF"
+    ./KDEF
+    ;;
+esac
