@@ -50,15 +50,15 @@ int main(int argc, char **argv){
               // Preprocesamiento.
               if( ts[cont] ){
                 resize( image(roi), image, Size( 100, 100 ) );
-                imgname = "training/" + to_string( trainingCount++ ) + ".JPG";
+                imgname = to_string( trainingCount++ ) + ".JPG";
                 trainingListFile << imgname << " " << j << endl;
+                imwrite( "training/" + imgname, image );
               }
               else{
-                imgname = "test/" + to_string( testCount++ ) + ".JPG";
+                imgname = to_string( testCount++ ) + ".JPG";
                 testListFile << imgname << " " << j << endl;
+                imwrite( "test/" + imgname, image );
               }
-
-              imwrite( imgname, image );
 
               cout << "Procesando... ";
               printProgress(cont++, total);
