@@ -51,7 +51,7 @@ void KDEF::generateSolverFile( int _expr ) const{
   if( solver_file.is_open() ){
     solver_file
     << "net: \"data/nets/kdef_all.prototxt\"" << endl
-    << "test_iter: 3" << endl
+    << "test_iter: 6" << endl
     << "test_interval: 500" << endl
     << "base_lr: 1.0" << endl
     << "lr_policy: \"step\"" << endl

@@ -48,8 +48,8 @@ int main(int argc, char **argv){
           for( unsigned int j = 0; j < db->get_num_expresiones(); j++ ){
             if( leeimagen( db->construir_path( i, j, g, s, angle ), image, 0 ) ){
               // Preprocesamiento.
+              resize( image(roi), image, Size( 100, 100 ) );
               if( ts[cont] ){
-                resize( image(roi), image, Size( 100, 100 ) );
                 imgname = to_string( trainingCount++ ) + ".JPG";
                 trainingListFile << imgname << " " << j << endl;
                 imwrite( "training/" + imgname, image );
