@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <opencv2/opencv.hpp>
+#include <fstream>
 #include <sstream>
 #include <cassert>
 using namespace std;
@@ -56,6 +57,8 @@ public:
 		unsigned int _gender = 0,
 		unsigned int _session = 0,
 		unsigned int _angle = 0 ) const = 0;
+
+	virtual void generateSolverFile( int _expr = -1 ) const = 0;
 };
 
 /***************************************************************************************************
@@ -72,6 +75,8 @@ public:
 		unsigned int _gender = 0,
 		unsigned int _session = 0,
 		unsigned int _angle = 0 ) const;
+
+	void generateSolverFile( int _expr = -1 ) const;
 };
 
 
@@ -86,6 +91,8 @@ public:
 		unsigned int _gender,
 		unsigned int _session,
 		unsigned int _angle) const;
+
+		void generateSolverFile( int _expr = -1 ) const;
 };
 
 #endif //__INFOBASEDATOS_H__

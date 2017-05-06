@@ -69,6 +69,7 @@ int main(int argc, char **argv){
     }
     trainingListFile.close();
     testListFile.close();
+    db->generateSolverFile();
   }
 
   return 0;

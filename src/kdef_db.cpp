@@ -40,3 +40,32 @@ String KDEF::construir_path(
 
   return this->db_dir + "/" + folder + "/" + imagen;
 }
+
+void KDEF::generateSolverFile( int _expr ) const{
+  // Variables.
+  ofstream solver_file;
+
+  // Open file.
+  solver_file.open( "solver.prototxt", ios::trunc );
+
+  if( solver_file.is_open() ){
+    solver_file
+    << "net: \"data/nets/kdef_all.prototxt\"" << endl
+    << "test_iter: 3" << endl
+    << "test_interval: 500" << endl
+    << "base_lr: 1.0" << endl
+    << "lr_policy: \"step\"" << endl
+    << "gamma: 0.01" << endl
+    << "stepsize: 1000" << endl
+    << "display: 500" << endl
+    << "max_iter: 5000" << endl
+    << "momentum: 0.9" << endl
+    << "snapshot: 1000" << endl
+    << "snapshot_prefix: \"/home/fran/Escritorio/results/kdef_train\"" << endl
+    //<< "snapshot_prefix: \"/home/fran/Escritorio/results/kdef_train_"<< _expr << "\"" << endl
+    //<< "snapshot_prefix: \"data/nets/yalefaces_train_"<< _expr << "\"" << endl
+    << "solver_mode: CPU";
+
+    solver_file.close();
+  }
+}
