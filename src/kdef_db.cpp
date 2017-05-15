@@ -51,17 +51,17 @@ void KDEF::generateSolverFile( int _expr ) const{
   if( solver_file.is_open() ){
     solver_file
     << "net: \"data/nets/kdef_all.prototxt\"" << endl
-    << "test_iter: 6" << endl
+    << "test_iter: 5" << endl
     << "test_interval: 500" << endl
-    << "base_lr: 1.0" << endl
+    << "base_lr: 0.1" << endl
     << "lr_policy: \"step\"" << endl
-    << "gamma: 0.01" << endl
+    << "gamma: 0.1" << endl
     << "stepsize: 1000" << endl
     << "display: 500" << endl
-    << "max_iter: 5000" << endl
+    << "max_iter: 3000" << endl
     << "momentum: 0.9" << endl
     << "snapshot: 1000" << endl
-    << "snapshot_prefix: \"/home/fran/Escritorio/results/kdef_train\"" << endl
+    << "snapshot_prefix: \"/home/fran/Escritorio/results/kdef/kdef_train\"" << endl
     //<< "snapshot_prefix: \"/home/fran/Escritorio/results/kdef_train_"<< _expr << "\"" << endl
     //<< "snapshot_prefix: \"data/nets/yalefaces_train_"<< _expr << "\"" << endl
     << "solver_mode: CPU";
