@@ -3,10 +3,29 @@
 KDEF::KDEF():infoBaseDatos( 35, 7, "KDEF" ){
   // neutral, happy, angry, afraid, disgusted, sad, surprised.
   this->db_dir = "../res/KDEF";
-  this->expresiones = { "NE","HA","AN","AF","DI","SA","SU" };
+  this->expresiones.push_back( "NE" );
+  this->expresiones.push_back( "HA" );
+  this->expresiones.push_back( "AN" );
+  this->expresiones.push_back( "AF" );
+  this->expresiones.push_back( "DI" );
+  this->expresiones.push_back( "SA" );
+  this->expresiones.push_back( "SU" );
+
+  this->gender.push_back( "F" );
+  this->gender.push_back( "M" );
+
+  this->session.push_back( "A" );
+  this->session.push_back( "B" );
+
+  this->angle.push_back( "FL" );
+  this->angle.push_back( "HL" );
+  this->angle.push_back( "S" );
+  this->angle.push_back( "HR" );
+  this->angle.push_back( "FR" );
+  /*this->expresiones = { "NE","HA","AN","AF","DI","SA","SU" };
   this->gender = { "F", "M" };
   this->session = { "A", "B" };
-  this->angle = { "FL", "HL", "S", "HR", "FR" };
+  this->angle = { "FL", "HL", "S", "HR", "FR" };*/
 }
 
 String KDEF::construir_path(
@@ -56,15 +75,15 @@ void KDEF::generateSolverFile( int _expr ) const{
     << "base_lr: 0.1" << endl
     << "lr_policy: \"step\"" << endl
     << "gamma: 0.1" << endl
-    << "stepsize: 1000" << endl
+    << "stepsize: 3375" << endl
     << "display: 500" << endl
-    << "max_iter: 3000" << endl
+    << "max_iter: 13500" << endl
     << "momentum: 0.9" << endl
     << "snapshot: 1000" << endl
     << "snapshot_prefix: \"/home/fran/Escritorio/results/kdef/kdef_train\"" << endl
     //<< "snapshot_prefix: \"/home/fran/Escritorio/results/kdef_train_"<< _expr << "\"" << endl
     //<< "snapshot_prefix: \"data/nets/yalefaces_train_"<< _expr << "\"" << endl
-    << "solver_mode: CPU";
+    << "solver_mode: GPU";
 
     solver_file.close();
   }

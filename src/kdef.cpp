@@ -3,6 +3,7 @@
 */
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <opencv2/opencv.hpp>
 #include "utilidades.h"
 #include "infoBaseDatos.h"
@@ -21,7 +22,8 @@ int main(int argc, char **argv){
 
   // Variables
   Mat image;
-  string imgname;
+  ostringstream imgname;
+  //string imgname;
   ofstream trainingListFile, testListFile;
   infoBaseDatos* db;
   Scalar color = Scalar( 255, 255, 0 );
@@ -50,16 +52,23 @@ int main(int argc, char **argv){
               // Preprocesamiento.
               resize( image(roi), image, Size( 100, 100 ) );
               if( ts[cont] ){
-                imgname = to_string( trainingCount++ ) + ".JPG";
-                trainingListFile << imgname << " " << j << endl;
-                imwrite( "training/" + imgname, image );
+                imgname << trainingCount++ << ".JPG";
+                trainingListFile << imgname.str() << " " << j << endl;
+                imwrite( "training/" + imgname.str(), image );
+                //imgname = to_string( trainingCount++ ) + ".JPG";
+                //trainingListFile << imgname << " " << j << endl;
+                //imwrite( "training/" + imgname, image );
               }
               else{
-                imgname = to_string( testCount++ ) + ".JPG";
-                testListFile << imgname << " " << j << endl;
-                imwrite( "test/" + imgname, image );
+                imgname << testCount++ << ".JPG";
+                testListFile << imgname.str() << " " << j << endl;
+                imwrite( "test/" + imgname.str(), image );
+                //imgname = to_string( testCount++ ) + ".JPG";
+                //testListFile << imgname << " " << j << endl;
+                //imwrite( "test/" + imgname, image );
               }
-
+              imgname.str("");
+              imgname.clear();
               cout << "Procesando... ";
               printProgress(cont++, total);
             }

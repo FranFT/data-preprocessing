@@ -2,8 +2,19 @@
 
 yalefaces::yalefaces():infoBaseDatos(15, 11, "yalefaces"){
 	this->db_dir = "../res/yalefaces";
-	this->expresiones = { "centerlight", "glasses", "happy", "leftlight",
-		"noglasses", "normal", "rightlight", "sad", "sleepy", "surprised", "wink" };
+	//this->expresiones = { "centerlight", "glasses", "happy", "leftlight",
+	//	"noglasses", "normal", "rightlight", "sad", "sleepy", "surprised", "wink" };
+	this->expresiones.push_back( "centerlight" );
+	this->expresiones.push_back( "glasses" );
+	this->expresiones.push_back( "happy" );
+	this->expresiones.push_back( "leftlight" );
+	this->expresiones.push_back( "noglasses" );
+	this->expresiones.push_back( "normal" );
+	this->expresiones.push_back( "rightlight" );
+	this->expresiones.push_back( "sad" );
+	this->expresiones.push_back( "sleepy" );
+	this->expresiones.push_back( "surprised" );
+	this->expresiones.push_back( "wink" );
 }
 
 String yalefaces::construir_path(
