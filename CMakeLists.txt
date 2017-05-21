@@ -10,11 +10,13 @@ SET(PROJ_SOURCES      "src")
 # Ejecutables
 SET(EJECUTABLE1       "yalefaces")
 SET(EJECUTABLE2       "KDEF")
-#SET(EJECUTABLE2       "trainingSetup")
+SET(EJECUTABLE3       "DIGITS_yalefaces")
 
 # Archivos para cada ejecutable
 FILE( GLOB_RECURSE EXECUTABLE1_SOURCES ${PROJ_SOURCES}/yalefaces.cpp ${PROJ_SOURCES}/yalefaces_db.cpp ${PROJ_SOURCES}/infoBaseDatos.cpp ${PROJ_SOURCES}/utilidades.cpp ${PROJ_SOURCES}/subject.cpp )
 FILE( GLOB_RECURSE EXECUTABLE2_SOURCES ${PROJ_SOURCES}/kdef.cpp ${PROJ_SOURCES}/kdef_db.cpp ${PROJ_SOURCES}/infoBaseDatos.cpp ${PROJ_SOURCES}/utilidades.cpp )
+FILE( GLOB_RECURSE EXECUTABLE3_SOURCES ${PROJ_SOURCES}/DIGITS_yalefaces.cpp ${PROJ_SOURCES}/yalefaces_db.cpp ${PROJ_SOURCES}/infoBaseDatos.cpp ${PROJ_SOURCES}/utilidades.cpp )
+
 
 # Inicio compilación.
 PROJECT( ${PROJ_NAME} )
@@ -30,3 +32,7 @@ TARGET_LINK_LIBRARIES( ${EJECUTABLE1} ${OpenCV_LIBS} )
 # Compilación Ejecutable 2.
 ADD_EXECUTABLE( ${EJECUTABLE2} ${EXECUTABLE2_SOURCES} )
 TARGET_LINK_LIBRARIES( ${EJECUTABLE2} ${OpenCV_LIBS} )
+
+# Compilación Ejecutable 3.
+ADD_EXECUTABLE( ${EJECUTABLE3} ${EXECUTABLE3_SOURCES} )
+TARGET_LINK_LIBRARIES( ${EJECUTABLE3} ${OpenCV_LIBS} )
